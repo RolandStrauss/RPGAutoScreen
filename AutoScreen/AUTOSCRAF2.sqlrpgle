@@ -1,390 +1,390 @@
-100DECL   ,1      ,"     ‚*************************************************************************"
-100DECL   ,1      ,"      * (C) COPYRIGHT 2017, ASHISH                                        ‚    "
-100DECL   ,1      ,"      * ALL RIGHTS RESERVED                                                 ‚  "
-100DECL   ,1      ,"      *                                                                     ‚  "
-100DECL   ,1      ,"      *     * * * * *  C I T I  C O N F I D E N T I A L  * * * * *          ‚  "
-100DECL   ,1      ,"      * THIS PROGRAM IS AN UNPUBLISHED WORK FULLY PROTECTED BY THE UNITED   ‚  "
-100DECL   ,1      ,"      * STATES COPYRIGHT LAWS AND IS CONSIDERED A TRADE SECRET BELONGING TO ‚  "
-100DECL   ,1      ,"      * THE COPYRIGHT HOLDER.                                               ‚  "
-100DECL   ,1      ,"     ‚*************************************************************************"
-100DECL   ,1      ,"      * š                                                                 ‚ ‚ *"
-100DECL   ,1      ,"      * ===================================================================== *"
-100DECL   ,1      ,"      *‚ Program Name     š:š==PROGRAMMP==                                ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Author           š: ==PROG=======                                ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Date             š:š==DATE=======                                ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Project          š: ==PROJECTNM==                                ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Work list        š:š==PROJECT====                                ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Description      š:š==DESC=======                                ‚ ‚‚*"
-100DECL   ,1      ,"      *š                                                                  ‚ ‚‚*"
-100DECL   ,1      ,"      * ===================================================================== *"
-100DECL   ,1      ,"      *‚                       Change History                             ‚ ‚‚*"
-100DECL   ,1      ,"      * =====================================================================‚*"
-100DECL   ,1      ,"      *‚ Author           š:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Date             š:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Project Referenceš:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Work list        š:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Description      š:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      *‚ Modification tag š:š                                             ‚ ‚‚*"
-100DECL   ,1      ,"      * =====================================================================‚*"
-100DECL   ,1      ,"      *                                                                        "
-100DECL   ,1      ,"      *************************************************************************"
-100DECL   ,10     ,"     H Debug Option(*NoDebugIO)                                                "
-100DECL   ,11     ,"                                                                               "
-100DECL   ,12     ,"     ‚*‚File Specification                                                     "
-100DECL   ,13     ,"     F==PGMMD$$$CF   E             WORKSTN                                     "
-100DECL   ,14     ,"     F==FILE$$$$IF   E             DISK                                        "
-100DECL   ,15     ,"                                                                               "
-100DECL   ,16     ,"     ‚*‚Variable Declaration                                                   "
-100DECL   ,17     ,"     DVarDs1           DS                                                      "
-100DECL   ,18     ,"     D Wk_Command                   300    Inz(*Blanks)                        "
-100DECL   ,18     ,"     D WkScrName                     50    Inz(*Blanks)                        "
-100DECL   ,19     ,"     D WkStartPos                     2  0 Inz(*Zeros)                         "
-100DECL   ,19     ,"     D inValidScrNo                   2  0 Inz(*Zeros)                         "
-100DECL   ,20     ,"     D wCurScrNo                      2  0 Inz(*Zeros)                         "
-100DECL   ,21     ,"     D wScrRecNo                      2  0 Inz(*Zeros)                         "
-100DECL   ,22     ,"     D wRecNo                        10  0 Inz(*Zeros)                         "
-100DECL   ,23     ,"     D Wk_CmdLen                     15P 5 Inz(*Zeros)                         "
-100DECL   ,24     ,"     D Wk_TStamp                       Z                                       "
-100DECL   ,25     ,"                                                                               "
-100DECL   ,26     ,"     ‚*‚Indicators                                                             "
-100DECL   ,27     ,"     D Wk_SuccessFlg                   N   Inz(*Off)                           "
-100DECL   ,28     ,"     D FndFlg                          N   Inz(*Off)                           "
-100DECL   ,29     ,"     D wDispOnlyFlg                    N   Inz(*Off)                           "
-100DECL   ,30     ,"     D wValidFlg                       N   Inz(*Off)                           "
-100DECL   ,31     ,"     D wAllValid                       N   Inz(*Off)                           "
-100DECL   ,32     ,"     D InKyPtr         S               *   Inz(%ADDR(*IN))                     "
-100DECL   ,33     ,"                                                                               "
-100DECL   ,34     ,"     D PgmInd          DS            99    Based(InKyPtr)                      "
-100DECL   ,35     ,"     D wAddUpd                         N   Overlay(PgmInd: 17)                 "
-100DECL   ,36     ,"     D wPrvScr                         N   Overlay(PgmInd: 19)                 "
-100DECL   ,37     ,"     D wNxtScr                         N   Overlay(PgmInd: 20)                 "
-100DECL   ,38     ,"     D wDspOnly                        N   Overlay(PgmInd: 31)                 "
-100DECL   ,39     ,"                                                                               "
-100DECL   ,40     ,"     ‚*‚Constants                                                              "
-100DECL   ,41     ,"     DUCase            C                   CONST('ABCDEFGHIJKLMNOPQRSTUVWXYZ') "
-100DECL   ,42     ,"     DLCase            C                   CONST('abcdefghijklmnopqrstuvwxyz') "
-100DECL   ,43     ,"                                                                               "
-100DECL   ,44     ,"     ‚*‚Data Structures                                                        "
-100DECL   ,45     ,"     D FileDS        E DS                  EXTNAME(==FILE==     )              "
-100DECL   ,46     ,"                                                                               "
-100DECL   ,47     ,"     ‚*‚Program Status Data Structure                                          "
-100DECL   ,48     ,"     D PSDS           SDS                                                      "
-100DECL   ,49     ,"     D USER                  254    263                                        "
-100DECL   ,50     ,"                                                                               "
-100DECL   ,51     ,"     ‚*‚Prototypes                                                             "
-100DECL   ,52     ,"     D ==PGMMP$$$      PR                  EXTPGM('==PGMMP===')                "
-100DECL   ,53     ,"     D Mode                           3                                        "
-100DECL   ,54     ,"     D RecNo                         10  0                                     "
-100DECL   ,55     ,"     D ErrorFlg                        N                                       "
-100DECL   ,56     ,"                                                                               "
-100DECL   ,57     ,"                                                                               "
-100DECL   ,58     ,"     D ==PGMMP$$$      PI                                                      "
-100DECL   ,59     ,"     D inMode                         3                                        "
-100DECL   ,60     ,"     D inRecNo                       10  0                                     "
-100DECL   ,61     ,"     D ErrFlg                          N                                       "
-100DECL   ,62     ,"                                                                               "
-100MAIN   ,1      ,"      /Free                                                                    "
-100MAIN   ,2      ,"                                                                               "
-100MAIN   ,3      ,"         //‚----------------------------------------------------------         "
-100MAIN   ,4      ,"         //‚                      Program Starts                     -         "
-100MAIN   ,5      ,"         //‚----------------------------------------------------------         "
-100MAIN   ,6      ,"                                                                               "
-100MAIN   ,7      ,"         //‚Set SQL Options                                                    "
-100MAIN   ,8      ,"            Exec SQL                                                           "
-100MAIN   ,9      ,"               SET OPTION COMMIT = *NONE, CLOSQLCSR = *ENDMOD;                 "
-100MAIN   ,10     ,"                                                                               "
-100MAIN   ,11     ,"            EXEC SQL                                                           "
-100MAIN   ,12     ,"              WHENEVER SQLERROR CONTINUE;                                      "
-100MAIN   ,13     ,"                                                                               "
-100TSCR   ,1      ,"         //‚Set Total Screens                                                  "
-100TSCR   ,2      ,"            wScrRecNo = TS=                                                    "
-100TSCR   ,3      ,"                                                                               "
-100TSCR   ,3      ,"         // Screen Name                                                        "
-100TSCR   ,3      ,"            wkScrName = ==SCREENNM===                                          "
-100TSCR   ,3      ,"            wkStartPos = (50 - %Len(%Trim(wkScrName))) / 2;                    "
-100TSCR   ,3      ,"            If wkStartPos < 1;                                                 "
-100TSCR   ,3      ,"              wkStartPos = 1;                                                  "
-100TSCR   ,3      ,"            EndIf;                                                             "
-100TSCR   ,3      ,"            %SubSt(inScrn:wkStartPos) = %Trim(wkScrName);                      "
-100TSCR   ,3      ,"                                                                               "
-101MAIN   ,1      ,"         //‚Set Input RRN Number                                               "
-101MAIN   ,2      ,"            If %DEC(inRecNo) < 0;                                              "
-101MAIN   ,3      ,"              wRecNo = 1;                                                      "
-101MAIN   ,4      ,"            Else;                                                              "
-101MAIN   ,5      ,"              wRecNo = inRecNo;                                                "
-101MAIN   ,8      ,"            EndIf;                                                             "
-101MAIN   ,9      ,"                                                                               "
-101MAIN   ,10     ,"         //‚Set Display Parameters                                             "
-101MAIN   ,11     ,"            ExSr $SetDspParm;                                                  "
-101MAIN   ,12     ,"                                                                               "
-101MAIN   ,13     ,"         //‚Process Display Screens                                            "
-101MAIN   ,14     ,"            ExSr $ProcessDisplay;                                              "
-101MAIN   ,15     ,"                                                                               "
-101MAIN   ,16     ,"         //‚Exit Program                                                       "
-101MAIN   ,17     ,"            ExSr $ExitPgm;                                                     "
-101MAIN   ,18     ,"                                                                               "
-101MAIN   ,19     ,"                                                                               "
-102SUBR   ,1      ,"         //‚----------------------------------------------------------         "
-102SUBR   ,2      ,"         //‚                        Subroutines                      -         "
-102SUBR   ,3      ,"         //‚----------------------------------------------------------         "
-102SUBR   ,4      ,"                                                                               "
-102SUBR   ,5      ,"         //‚----------------------------------------                           "
-102SUBR   ,6      ,"         //‚$SetDspParm - Set Display Parameters                               "
-102SUBR   ,7      ,"         //‚----------------------------------------                           "
-102SUBR   ,8      ,"            BegSr $SetDspParm;                                                 "
-102SUBR   ,9      ,"                                                                               "
-102SUBR   ,10     ,"           //‚Clear Fields                                                     "
-102SUBR   ,11     ,"              Clear FileDS;                                                    "
-102SUBR   ,12     ,"                                                                               "
-102SUBR   ,13     ,"           //‚Set Display to First Screen                                      "
-102SUBR   ,14     ,"              If wCurScrNo = 0;                                                "
-102SUBR   ,15     ,"                wCurScrNo = 1;                                                 "
-102SUBR   ,16     ,"              EndIf;                                                           "
-102SUBR   ,17     ,"                                                                               "
-102SUBR   ,18     ,"           //‚Set Display Only (Protected Fields) to Off                       "
-102SUBR   ,19     ,"              wDispOnlyFlg = *Off;                                             "
-102SUBR   ,20     ,"                                                                               "
-102SUBR   ,21     ,"              If inMode = 'ADD';                                               "
-102SUBR   ,22     ,"                If wRecNo > 0;                                                 "
-102SUBR   ,23     ,"                  ExSr $Fetch;                                                 "
-102SUBR   ,24     ,"                EndIf;                                                         "
-102SUBR   ,25     ,"                wAllValid = *Off;                                              "
-102SUBR   ,26     ,"              ElseIf inMode = 'DLT' Or inMode = 'DSP' Or inMode = 'UPD';       "
-102SUBR   ,27     ,"             //‚Fetch record from file using RRN passed                        "
-102SUBR   ,28     ,"                ExSr $Fetch;                                                   "
-102SUBR   ,29     ,"                wDispOnlyFlg = *On;                                            "
-102SUBR   ,30     ,"                wAllValid = *On;                                               "
-102SUBR   ,31     ,"              EndIf;                                                           "
-102SUBR   ,32     ,"                                                                               "
-102SUBR   ,33     ,"           //‚Fetch record from file using RRN passed                          "
-102SUBR   ,34     ,"              If inMode = 'DLT' Or inMode = 'DSP';                             "
-102SUBR   ,35     ,"                wDspOnly = *On;                                                "
-102SUBR   ,36     ,"              EndIf;                                                           "
-102SUBR   ,37     ,"                                                                               "
-102SUBR   ,38     ,"           //‚In case of Display, don't show Confirm Function                  "
-102SUBR   ,39     ,"              If inMode = 'DSP';                                               "
-102SUBR   ,40     ,"                *In41 = *On;                                                   "
-102SUBR   ,41     ,"              EndIf;                                                           "
-102SUBR   ,42     ,"                                                                               "
-102SUBR   ,43     ,"            EndSr;                                                             "
-102SUBR   ,44     ,"                                                                               "
-102SUBR   ,45     ,"         //‚------------------------------------------                         "
-102SUBR   ,46     ,"         //‚$ProcessDisplay - Process Display Screens                          "
-102SUBR   ,47     ,"         //‚------------------------------------------                         "
-102SUBR   ,48     ,"            BegSr $ProcessDisplay;                                             "
-102SUBR   ,49     ,"                                                                               "
-102SUBR   ,50     ,"              DoU *In12 Or *In03;                                              "
-102SUBR   ,51     ,"                                                                               "
-102SUBR   ,52     ,"             //‚Choose which screen to display                                 "
-102SUBR   ,53     ,"                ExSr $ShowScreen;                                              "
-102SUBR   ,54     ,"                                                                               "
-102SUBR   ,55     ,"                If *In12 = *Off And *In03 = *Off;                              "
-102SUBR   ,56     ,"                                                                               "
-102SUBR   ,57     ,"                  ERRMSG = *Blanks;                                            "
-102SUBR   ,58     ,"                                                                               "
-102SUBR   ,59     ,"                  Select;                                                      "
-102SUBR   ,60     ,"                                                                               "
-102SUBR   ,61     ,"                  When InMode = 'UPD' Or InMode = 'ADD';                       "
-102SUBR   ,62     ,"                                                                               "
-102SUBR   ,63     ,"                 //‚Validate screen fields                                     "
-102SUBR   ,64     ,"                    ExSr $ValidateScr;                                         "
-102SUBR   ,65     ,"                                                                               "
-102SUBR   ,66     ,"                    If wValidFlg = *Off;                                       "
-102SUBR   ,67     ,"                      inValidScrNo = wCurScrNo;                                "
-102SUBR   ,68     ,"                    Else;                                                      "
-102SUBR   ,69     ,"                                                                               "
-102SUBR   ,70     ,"                      If wAddUpd = *On And wAllValid = *On;                    "
-102SUBR   ,71     ,"                        If inMode = 'ADD';                                     "
-102SUBR   ,72     ,"                       //‚Add record to file                                   "
-102SUBR   ,73     ,"                          ExSr $Add;                                           "
-102SUBR   ,74     ,"                          Clear FileDS;                                        "
-102SUBR   ,75     ,"                          ErrMsg = 'Record Added Successfully!';               "
-102SUBR   ,76     ,"                          wCurScrNo = 1;                                       "
-102SUBR   ,77     ,"                        Else;                                                  "
-102SUBR   ,78     ,"                       //‚Update record                                        "
-102SUBR   ,79     ,"                          ExSr $Update;                                        "
-102SUBR   ,80     ,"                          ErrMsg = 'Record Updated Successfully!';             "
-102SUBR   ,81     ,"                          wCurScrNo = 1;                                       "
-102SUBR   ,82     ,"                        EndIf;                                                 "
-102SUBR   ,83     ,"                      EndIf;                                                   "
-102SUBR   ,84     ,"                                                                               "
-102SUBR   ,85     ,"                    EndIf;                                                     "
-102SUBR   ,86     ,"                                                                               "
-102SUBR   ,87     ,"                  When InMode = 'DSP' Or InMode = 'DLT';                       "
-102SUBR   ,88     ,"                                                                               "
-102SUBR   ,89     ,"                 //‚Delete record                                              "
-102SUBR   ,90     ,"                    If InMode = 'DLT' And wAddUpd = *On;                       "
-102SUBR   ,91     ,"                      ExSr $Delete;                                            "
-102SUBR   ,92     ,"                      ExSr $ExitPgm;                                           "
-102SUBR   ,93     ,"                    EndIf;                                                     "
-102SUBR   ,94     ,"                                                                               "
-102SUBR   ,95     ,"                 //‚Choose screen                                              "
-102SUBR   ,96     ,"                    If wPrvScr = *On And wCurScrNo > 1;                        "
-102SUBR   ,97     ,"                      wCurScrNo -= 1;                                          "
-102SUBR   ,98     ,"                    ElseIf wCurScrNo < wScrRecNo And wPrvScr = *Off;           "
-102SUBR   ,99     ,"                      wCurScrNo +=1;                                           "
-102SUBR   ,100    ,"                    EndIf;                                                     "
-102SUBR   ,101    ,"                                                                               "
-102SUBR   ,102    ,"                  EndSl;                                                       "
-102SUBR   ,103    ,"                                                                               "
-102SUBR   ,104    ,"                Else;                                                          "
-102SUBR   ,105    ,"                  ExSr $ExitPgm;                                               "
-102SUBR   ,106    ,"                EndIf;                                                         "
-102SUBR   ,107    ,"                                                                               "
-102SUBR   ,108    ,"              EndDo;                                                           "
-102SUBR   ,109    ,"                                                                               "
-102SUBR   ,110    ,"            EndSr;                                                             "
-102SUBR   ,111    ,"                                                                               "
-103SCR    ,1      ,"         //‚----------------------------------                                 "
-103SCR    ,1      ,"         //‚$ShowScreen - Show Screen                                          "
-103SCR    ,1      ,"         //‚----------------------------------                                 "
-103SCR    ,1      ,"            BegSr $ShowScreen;                                                 "
-103SCR    ,1      ,"                                                                               "
-103SCR    ,1      ,"           //‚If First Screen Don't show Previous                              "
-103SCR    ,1      ,"              If wCurScrNo = 1;                                                "
-103SCR    ,1      ,"                *In51 = *On;                                                   "
-103SCR    ,1      ,"              Else;                                                            "
-103SCR    ,1      ,"                *In51 = *Off;                                                  "
-103SCR    ,1      ,"              EndIf;                                                           "
-103SCR    ,1      ,"                                                                               "
-103SCR    ,1      ,"           //‚If Last Screen Don't show Next                                   "
-103SCR    ,1      ,"              If wCurScrNo = wScrRecNo;                                        "
-103SCR    ,1      ,"                *In52 = *On;                                                   "
-103SCR    ,1      ,"              Else;                                                            "
-103SCR    ,1      ,"                *In52 = *Off;                                                  "
-103SCR    ,1      ,"              EndIf;                                                           "
-103SCR    ,1      ,"                                                                               "
-103SCR    ,1      ,"              Write HEADER;                                                    "
-103SCR    ,1      ,"              Write FOOTER;                                                    "
-103SCR    ,1      ,"                                                                               "
-103SCR    ,1      ,"              Select;                                                          "
-103SCR    ,1      ,"                                                                               "
-103SCR    ,2      ,"                When wCurScrNo = CS=;                                          "
-103SCR    ,2      ,"                  ExFmt DspRecCS=;                                             "
-103SCR    ,2      ,"                                                                               "
-103SCR    ,3      ,"              EndSl;                                                           "
-103SCR    ,3      ,"                                                                               "
-103SCR    ,3      ,"            EndSr;                                                             "
-103SCR    ,3      ,"                                                                               "
-104VAL    ,1      ,"         //‚----------------------------------                                 "
-104VAL    ,1      ,"         //‚$ValidateScr - Validate Screens                                    "
-104VAL    ,1      ,"         //‚----------------------------------                                 "
-104VAL    ,1      ,"            BegSr $ValidateScr;                                                "
-104VAL    ,1      ,"                                                                               "
-104VAL    ,1      ,"              wValidFlg = *Off;                                                "
-104VAL    ,1      ,"                                                                               "
-104VAL    ,1      ,"           //‚Select Validate Subroutine according to screen                   "
-104VAL    ,1      ,"              Select;                                                          "
-104VAL    ,1      ,"                                                                               "
-104VAL    ,2      ,"                When wCurScrNo = CS=;                                          "
-104VAL    ,2      ,"                  ExSr $ValidateCS=;                                           "
-104VAL    ,2      ,"                                                                               "
-104VAL    ,3      ,"              EndSl;                                                           "
-104VAL    ,3      ,"                                                                               "
-104VAL    ,3      ,"           //‚Check if Valid                                                   "
-104VAL    ,3      ,"              If wValidFlg = *On;                                              "
-104VAL    ,3      ,"                                                                               "
-104VAL    ,3      ,"                If wPrvScr = *On And wCurScrNo > 1;                            "
-104VAL    ,3      ,"                  wCurScrNo -= 1;                                              "
-104VAL    ,3      ,"                ElseIf wCurScrNo < wScrRecNo And wPrvScr = *Off;               "
-104VAL    ,3      ,"                  wCurScrNo +=1;                                               "
-104VAL    ,3      ,"                ElseIf wCurScrNo = wScrRecNo And inMode = 'ADD';               "
-104VAL    ,3      ,"                  wAllValid = *On;                                             "
-104VAL    ,3      ,"                EndIf;                                                         "
-104VAL    ,3      ,"                                                                               "
-104VAL    ,3      ,"              Else;                                                            "
-104VAL    ,3      ,"                  wAllValid = *Off;                                            "
-104VAL    ,3      ,"              EndIf;                                                           "
-104VAL    ,3      ,"                                                                               "
-104VAL    ,3      ,"            EndSr;                                                             "
-104VAL    ,3      ,"                                                                               "
-105FTH    ,1      ,"         //‚---------------------------------                                  "
-105FTH    ,2      ,"         //‚$Fetch - Fetch Record                                              "
-105FTH    ,3      ,"         //‚---------------------------------                                  "
-105FTH    ,4      ,"            BegSr $Fetch;                                                      "
-105FTH    ,5      ,"                                                                               "
-105FTH    ,6      ,"               Exec SQL                                                        "
-105FTH    ,7      ,"                  SELECT * INTO :FileDS                                        "
-105FTH    ,8      ,"                  FROM ==FILE==   A                                            "
-105FTH    ,9      ,"                  WHERE RRN(A) = :wRecNo;                                      "
-105FTH    ,10     ,"                                                                               "
-105FTH    ,11     ,"               If SQLCOD < 0 or SQLCOD = 100;                                  "
-105FTH    ,12     ,"                 ERRMSG  = 'Record not found';                                 "
-105FTH    ,13     ,"               EndIf;                                                          "
-105FTH    ,14     ,"                                                                               "
-105FTH    ,15     ,"            EndSr;                                                             "
-105FTH    ,16     ,"                                                                               "
-106VALCD  ,1      ,"         //‚---------------------------------                                  "
-106VALCD  ,2      ,"         //‚$ValidateCS= - Validate Screen CS=                                 "
-106VALCD  ,3      ,"         //‚---------------------------------                                  "
-106VALCD  ,4      ,"            BegSr $ValidateCS=;                                                "
-106VALCD  ,5      ,"                                                                               "
-106VALCD  ,6      ,"               wValidFlg = *On;                                                "
-106VALCD  ,7      ,"               ERRMSG  = *Blanks;                                              "
-106VALCD  ,8      ,"                                                                               "
-106VALCD  ,9      ,"            EndSr;                                                             "
-106VALCD  ,10     ,"                                                                               "
-106ADDCD  ,1      ,"         //‚---------------------------------                                  "
-106ADDCD  ,2      ,"         //‚$Add - Add Data                                                    "
-106ADDCD  ,3      ,"         //‚---------------------------------                                  "
-106ADDCD  ,4      ,"            BegSr $Add;                                                        "
-106ADDCD  ,5      ,"                                                                               "
-106ADDCD  ,6      ,"              Exec SQL                                                         "
-106ADDCD  ,7      ,"                 INSERT INTO ==FILE==                                          "
-106ADDCD  ,8      ,"                 VALUES :FileDS;                                               "
-106ADDCD  ,9      ,"                                                                               "
-106ADDCD  ,10     ,"              If SQLCOD < 0;                                                   "
-106ADDCD  ,11     ,"                ERRMSG = 'Error Occured while adding data';                    "
-106ADDCD  ,12     ,"              Else;                                                            "
-106ADDCD  ,13     ,"                ERRMSG = *Blanks;                                              "
-106ADDCD  ,14     ,"              EndIf;                                                           "
-106ADDCD  ,15     ,"                                                                               "
-106ADDCD  ,16     ,"            EndSr;                                                             "
-106ADDCD  ,17     ,"                                                                               "
-106UPDCD  ,1      ,"         //‚---------------------------------                                  "
-106UPDCD  ,2      ,"         //‚$Update - Update Data                                              "
-106UPDCD  ,3      ,"         //‚---------------------------------                                  "
-106UPDCD  ,4      ,"            BegSr $Update;                                                     "
-106UPDCD  ,5      ,"                                                                               "
-106UPDCD  ,6      ,"              Exec SQL                                                         "
-106UPDCD  ,7      ,"                 UPDATE ==FILE==   A                                           "
-106UPDCD  ,8      ,"                 SET ROW = :FileDS                                             "
-106UPDCD  ,9      ,"                 WHERE RRN(A) = :wRecNo;                                       "
-106UPDCD  ,10     ,"                                                                               "
-106UPDCD  ,11     ,"              If SQLCOD < 0;                                                   "
-106UPDCD  ,12     ,"                ERRMSG = 'Error Occured while updating data';                  "
-106UPDCD  ,13     ,"              Else;                                                            "
-106UPDCD  ,14     ,"                ERRMSG = *Blanks;                                              "
-106UPDCD  ,15     ,"              EndIf;                                                           "
-106UPDCD  ,16     ,"                                                                               "
-106UPDCD  ,17     ,"            EndSr;                                                             "
-106UPDCD  ,18     ,"                                                                               "
-107DLTCD  ,1      ,"         //‚---------------------------------                                  "
-107DLTCD  ,2      ,"         //‚$Delete - Delete Data                                              "
-107DLTCD  ,3      ,"         //‚---------------------------------                                  "
-107DLTCD  ,4      ,"            BegSr $Delete;                                                     "
-107DLTCD  ,5      ,"                                                                               "
-107DLTCD  ,6      ,"              Exec SQL                                                         "
-107DLTCD  ,7      ,"                 DELETE FROM ==FILE==   A                                      "
-107DLTCD  ,8      ,"                 WHERE RRN(A) = :wRecNo;                                       "
-107DLTCD  ,9      ,"                                                                               "
-107DLTCD  ,10     ,"              If SQLCOD < 0;                                                   "
-107DLTCD  ,11     ,"                ERRMSG = 'Error Occured while deleteting data';                "
-107DLTCD  ,12     ,"              Else;                                                            "
-107DLTCD  ,13     ,"                ERRMSG = *Blanks;                                              "
-107DLTCD  ,14     ,"              EndIf;                                                           "
-107DLTCD  ,15     ,"                                                                               "
-107DLTCD  ,16     ,"            EndSr;                                                             "
-107DLTCD  ,17     ,"                                                                               "
-109END    ,1      ,"         //‚------------------------                                           "
-109END    ,2      ,"         //‚$ExitPgm - Exit Program                                            "
-109END    ,3      ,"         //‚------------------------                                           "
-109END    ,4      ,"            BegSr $ExitPgm;                                                    "
-109END    ,5      ,"                                                                               "
-109END    ,6      ,"              *InLr = *On;                                                     "
-109END    ,7      ,"              Return;                                                          "
-109END    ,8      ,"                                                                               "
-109END    ,9      ,"            EndSr;                                                             "
-109END    ,10     ,"                                                                               "
-109END    ,11     ,"      /End-Free                                                                "
-109END    ,12     ,"                                                                               "
+     ï¿½*************************************************************************
+      * (C) COPYRIGHT 2017, ASHISH                                        ï¿½    
+      * ALL RIGHTS RESERVED                                                 ï¿½  
+      *                                                                     ï¿½  
+      *     * * * * *  C I T I  C O N F I D E N T I A L  * * * * *          ï¿½  
+      * THIS PROGRAM IS AN UNPUBLISHED WORK FULLY PROTECTED BY THE UNITED   ï¿½  
+      * STATES COPYRIGHT LAWS AND IS CONSIDERED A TRADE SECRET BELONGING TO ï¿½  
+      * THE COPYRIGHT HOLDER.                                               ï¿½  
+     ï¿½*************************************************************************
+      * ï¿½                                                                 ï¿½ ï¿½ *
+      * ===================================================================== *
+      *ï¿½ Program Name     ï¿½:ï¿½==PROGRAMMP==                                ï¿½ ï¿½ï¿½*
+      *ï¿½ Author           ï¿½: ==PROG=======                                ï¿½ ï¿½ï¿½*
+      *ï¿½ Date             ï¿½:ï¿½==DATE=======                                ï¿½ ï¿½ï¿½*
+      *ï¿½ Project          ï¿½: ==PROJECTNM==                                ï¿½ ï¿½ï¿½*
+      *ï¿½ Work list        ï¿½:ï¿½==PROJECT====                                ï¿½ ï¿½ï¿½*
+      *ï¿½ Description      ï¿½:ï¿½==DESC=======                                ï¿½ ï¿½ï¿½*
+      *ï¿½                                                                  ï¿½ ï¿½ï¿½*
+      * ===================================================================== *
+      *ï¿½                       Change History                             ï¿½ ï¿½ï¿½*
+      * =====================================================================ï¿½*
+      *ï¿½ Author           ï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      *ï¿½ Date             ï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      *ï¿½ Project Referenceï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      *ï¿½ Work list        ï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      *ï¿½ Description      ï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      *ï¿½ Modification tag ï¿½:ï¿½                                             ï¿½ ï¿½ï¿½*
+      * =====================================================================ï¿½*
+      *                                                                        
+      *************************************************************************
+     H Debug Option(*NoDebugIO)                                                
+                                                                               
+     ï¿½*ï¿½File Specification                                                     
+     F==PGMMD$$$CF   E             WORKSTN                                     
+     F==FILE$$$$IF   E             DISK                                        
+                                                                               
+     ï¿½*ï¿½Variable Declaration                                                   
+     DVarDs1           DS                                                      
+     D Wk_Command                   300    Inz(*Blanks)                        
+     D WkScrName                     50    Inz(*Blanks)                        
+     D WkStartPos                     2  0 Inz(*Zeros)                         
+     D inValidScrNo                   2  0 Inz(*Zeros)                         
+     D wCurScrNo                      2  0 Inz(*Zeros)                         
+     D wScrRecNo                      2  0 Inz(*Zeros)                         
+     D wRecNo                        10  0 Inz(*Zeros)                         
+     D Wk_CmdLen                     15P 5 Inz(*Zeros)                         
+     D Wk_TStamp                       Z                                       
+                                                                               
+     ï¿½*ï¿½Indicators                                                             
+     D Wk_SuccessFlg                   N   Inz(*Off)                           
+     D FndFlg                          N   Inz(*Off)                           
+     D wDispOnlyFlg                    N   Inz(*Off)                           
+     D wValidFlg                       N   Inz(*Off)                           
+     D wAllValid                       N   Inz(*Off)                           
+     D InKyPtr         S               *   Inz(%ADDR(*IN))                     
+                                                                               
+     D PgmInd          DS            99    Based(InKyPtr)                      
+     D wAddUpd                         N   Overlay(PgmInd: 17)                 
+     D wPrvScr                         N   Overlay(PgmInd: 19)                 
+     D wNxtScr                         N   Overlay(PgmInd: 20)                 
+     D wDspOnly                        N   Overlay(PgmInd: 31)                 
+                                                                               
+     ï¿½*ï¿½Constants                                                              
+     DUCase            C                   CONST('ABCDEFGHIJKLMNOPQRSTUVWXYZ') 
+     DLCase            C                   CONST('abcdefghijklmnopqrstuvwxyz') 
+                                                                               
+     ï¿½*ï¿½Data Structures                                                        
+     D FileDS        E DS                  EXTNAME(==FILE==     )              
+                                                                               
+     ï¿½*ï¿½Program Status Data Structure                                          
+     D PSDS           SDS                                                      
+     D USER                  254    263                                        
+                                                                               
+     ï¿½*ï¿½Prototypes                                                             
+     D ==PGMMP$$$      PR                  EXTPGM('==PGMMP===')                
+     D Mode                           3                                        
+     D RecNo                         10  0                                     
+     D ErrorFlg                        N                                       
+                                                                               
+                                                                               
+     D ==PGMMP$$$      PI                                                      
+     D inMode                         3                                        
+     D inRecNo                       10  0                                     
+     D ErrFlg                          N                                       
+                                                                               
+      /Free                                                                    
+                                                                               
+         //ï¿½----------------------------------------------------------         
+         //ï¿½                      Program Starts                     -         
+         //ï¿½----------------------------------------------------------         
+                                                                               
+         //ï¿½Set SQL Options                                                    
+            Exec SQL                                                           
+               SET OPTION COMMIT = *NONE, CLOSQLCSR = *ENDMOD;                 
+                                                                               
+            EXEC SQL                                                           
+              WHENEVER SQLERROR CONTINUE;                                      
+                                                                               
+         //ï¿½Set Total Screens                                                  
+            wScrRecNo = TS=                                                    
+                                                                               
+         // Screen Name                                                        
+            wkScrName = ==SCREENNM===                                          
+            wkStartPos = (50 - %Len(%Trim(wkScrName))) / 2;                    
+            If wkStartPos < 1;                                                 
+              wkStartPos = 1;                                                  
+            EndIf;                                                             
+            %SubSt(inScrn:wkStartPos) = %Trim(wkScrName);                      
+                                                                               
+         //ï¿½Set Input RRN Number                                               
+            If %DEC(inRecNo) < 0;                                              
+              wRecNo = 1;                                                      
+            Else;                                                              
+              wRecNo = inRecNo;                                                
+            EndIf;                                                             
+                                                                               
+         //ï¿½Set Display Parameters                                             
+            ExSr $SetDspParm;                                                  
+                                                                               
+         //ï¿½Process Display Screens                                            
+            ExSr $ProcessDisplay;                                              
+                                                                               
+         //ï¿½Exit Program                                                       
+            ExSr $ExitPgm;                                                     
+                                                                               
+                                                                               
+         //ï¿½----------------------------------------------------------         
+         //ï¿½                        Subroutines                      -         
+         //ï¿½----------------------------------------------------------         
+                                                                               
+         //ï¿½----------------------------------------                           
+         //ï¿½$SetDspParm - Set Display Parameters                               
+         //ï¿½----------------------------------------                           
+            BegSr $SetDspParm;                                                 
+                                                                               
+           //ï¿½Clear Fields                                                     
+              Clear FileDS;                                                    
+                                                                               
+           //ï¿½Set Display to First Screen                                      
+              If wCurScrNo = 0;                                                
+                wCurScrNo = 1;                                                 
+              EndIf;                                                           
+                                                                               
+           //ï¿½Set Display Only (Protected Fields) to Off                       
+              wDispOnlyFlg = *Off;                                             
+                                                                               
+              If inMode = 'ADD';                                               
+                If wRecNo > 0;                                                 
+                  ExSr $Fetch;                                                 
+                EndIf;                                                         
+                wAllValid = *Off;                                              
+              ElseIf inMode = 'DLT' Or inMode = 'DSP' Or inMode = 'UPD';       
+             //ï¿½Fetch record from file using RRN passed                        
+                ExSr $Fetch;                                                   
+                wDispOnlyFlg = *On;                                            
+                wAllValid = *On;                                               
+              EndIf;                                                           
+                                                                               
+           //ï¿½Fetch record from file using RRN passed                          
+              If inMode = 'DLT' Or inMode = 'DSP';                             
+                wDspOnly = *On;                                                
+              EndIf;                                                           
+                                                                               
+           //ï¿½In case of Display, don't show Confirm Function                  
+              If inMode = 'DSP';                                               
+                *In41 = *On;                                                   
+              EndIf;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½------------------------------------------                         
+         //ï¿½$ProcessDisplay - Process Display Screens                          
+         //ï¿½------------------------------------------                         
+            BegSr $ProcessDisplay;                                             
+                                                                               
+              DoU *In12 Or *In03;                                              
+                                                                               
+             //ï¿½Choose which screen to display                                 
+                ExSr $ShowScreen;                                              
+                                                                               
+                If *In12 = *Off And *In03 = *Off;                              
+                                                                               
+                  ERRMSG = *Blanks;                                            
+                                                                               
+                  Select;                                                      
+                                                                               
+                  When InMode = 'UPD' Or InMode = 'ADD';                       
+                                                                               
+                 //ï¿½Validate screen fields                                     
+                    ExSr $ValidateScr;                                         
+                                                                               
+                    If wValidFlg = *Off;                                       
+                      inValidScrNo = wCurScrNo;                                
+                    Else;                                                      
+                                                                               
+                      If wAddUpd = *On And wAllValid = *On;                    
+                        If inMode = 'ADD';                                     
+                       //ï¿½Add record to file                                   
+                          ExSr $Add;                                           
+                          Clear FileDS;                                        
+                          ErrMsg = 'Record Added Successfully!';               
+                          wCurScrNo = 1;                                       
+                        Else;                                                  
+                       //ï¿½Update record                                        
+                          ExSr $Update;                                        
+                          ErrMsg = 'Record Updated Successfully!';             
+                          wCurScrNo = 1;                                       
+                        EndIf;                                                 
+                      EndIf;                                                   
+                                                                               
+                    EndIf;                                                     
+                                                                               
+                  When InMode = 'DSP' Or InMode = 'DLT';                       
+                                                                               
+                 //ï¿½Delete record                                              
+                    If InMode = 'DLT' And wAddUpd = *On;                       
+                      ExSr $Delete;                                            
+                      ExSr $ExitPgm;                                           
+                    EndIf;                                                     
+                                                                               
+                 //ï¿½Choose screen                                              
+                    If wPrvScr = *On And wCurScrNo > 1;                        
+                      wCurScrNo -= 1;                                          
+                    ElseIf wCurScrNo < wScrRecNo And wPrvScr = *Off;           
+                      wCurScrNo +=1;                                           
+                    EndIf;                                                     
+                                                                               
+                  EndSl;                                                       
+                                                                               
+                Else;                                                          
+                  ExSr $ExitPgm;                                               
+                EndIf;                                                         
+                                                                               
+              EndDo;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½----------------------------------                                 
+         //ï¿½$ShowScreen - Show Screen                                          
+         //ï¿½----------------------------------                                 
+            BegSr $ShowScreen;                                                 
+                                                                               
+           //ï¿½If First Screen Don't show Previous                              
+              If wCurScrNo = 1;                                                
+                *In51 = *On;                                                   
+              Else;                                                            
+                *In51 = *Off;                                                  
+              EndIf;                                                           
+                                                                               
+           //ï¿½If Last Screen Don't show Next                                   
+              If wCurScrNo = wScrRecNo;                                        
+                *In52 = *On;                                                   
+              Else;                                                            
+                *In52 = *Off;                                                  
+              EndIf;                                                           
+                                                                               
+              Write HEADER;                                                    
+              Write FOOTER;                                                    
+                                                                               
+              Select;                                                          
+                                                                               
+                When wCurScrNo = CS=;                                          
+                  ExFmt DspRecCS=;                                             
+                                                                               
+              EndSl;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½----------------------------------                                 
+         //ï¿½$ValidateScr - Validate Screens                                    
+         //ï¿½----------------------------------                                 
+            BegSr $ValidateScr;                                                
+                                                                               
+              wValidFlg = *Off;                                                
+                                                                               
+           //ï¿½Select Validate Subroutine according to screen                   
+              Select;                                                          
+                                                                               
+                When wCurScrNo = CS=;                                          
+                  ExSr $ValidateCS=;                                           
+                                                                               
+              EndSl;                                                           
+                                                                               
+           //ï¿½Check if Valid                                                   
+              If wValidFlg = *On;                                              
+                                                                               
+                If wPrvScr = *On And wCurScrNo > 1;                            
+                  wCurScrNo -= 1;                                              
+                ElseIf wCurScrNo < wScrRecNo And wPrvScr = *Off;               
+                  wCurScrNo +=1;                                               
+                ElseIf wCurScrNo = wScrRecNo And inMode = 'ADD';               
+                  wAllValid = *On;                                             
+                EndIf;                                                         
+                                                                               
+              Else;                                                            
+                  wAllValid = *Off;                                            
+              EndIf;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½---------------------------------                                  
+         //ï¿½$Fetch - Fetch Record                                              
+         //ï¿½---------------------------------                                  
+            BegSr $Fetch;                                                      
+                                                                               
+               Exec SQL                                                        
+                  SELECT * INTO :FileDS                                        
+                  FROM ==FILE==   A                                            
+                  WHERE RRN(A) = :wRecNo;                                      
+                                                                               
+               If SQLCOD < 0 or SQLCOD = 100;                                  
+                 ERRMSG  = 'Record not found';                                 
+               EndIf;                                                          
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½---------------------------------                                  
+         //ï¿½$ValidateCS= - Validate Screen CS=                                 
+         //ï¿½---------------------------------                                  
+            BegSr $ValidateCS=;                                                
+                                                                               
+               wValidFlg = *On;                                                
+               ERRMSG  = *Blanks;                                              
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½---------------------------------                                  
+         //ï¿½$Add - Add Data                                                    
+         //ï¿½---------------------------------                                  
+            BegSr $Add;                                                        
+                                                                               
+              Exec SQL                                                         
+                 INSERT INTO ==FILE==                                          
+                 VALUES :FileDS;                                               
+                                                                               
+              If SQLCOD < 0;                                                   
+                ERRMSG = 'Error Occured while adding data';                    
+              Else;                                                            
+                ERRMSG = *Blanks;                                              
+              EndIf;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½---------------------------------                                  
+         //ï¿½$Update - Update Data                                              
+         //ï¿½---------------------------------                                  
+            BegSr $Update;                                                     
+                                                                               
+              Exec SQL                                                         
+                 UPDATE ==FILE==   A                                           
+                 SET ROW = :FileDS                                             
+                 WHERE RRN(A) = :wRecNo;                                       
+                                                                               
+              If SQLCOD < 0;                                                   
+                ERRMSG = 'Error Occured while updating data';                  
+              Else;                                                            
+                ERRMSG = *Blanks;                                              
+              EndIf;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½---------------------------------                                  
+         //ï¿½$Delete - Delete Data                                              
+         //ï¿½---------------------------------                                  
+            BegSr $Delete;                                                     
+                                                                               
+              Exec SQL                                                         
+                 DELETE FROM ==FILE==   A                                      
+                 WHERE RRN(A) = :wRecNo;                                       
+                                                                               
+              If SQLCOD < 0;                                                   
+                ERRMSG = 'Error Occured while deleteting data';                
+              Else;                                                            
+                ERRMSG = *Blanks;                                              
+              EndIf;                                                           
+                                                                               
+            EndSr;                                                             
+                                                                               
+         //ï¿½------------------------                                           
+         //ï¿½$ExitPgm - Exit Program                                            
+         //ï¿½------------------------                                           
+            BegSr $ExitPgm;                                                    
+                                                                               
+              *InLr = *On;                                                     
+              Return;                                                          
+                                                                               
+            EndSr;                                                             
+                                                                               
+      /End-Free                                                                
+                                                                               

@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need to have AS400 Machine access (duh!)  
+You need to have IBMi Machine access (duh!)  
 Create a RPGUtils Source File to store the files.
 ```
 CRTSRCPF RPGUTILS
@@ -40,7 +40,7 @@ CRTSRCPF RPGUTILS
 ### Installing
 
 **Step 1.**
-Upload all files to AS400 server, use ftp. <em>DO NOT CHANGE THE MODE TO BINARY</em>.
+Upload all files to IBMi server, use ftp. <em>DO NOT CHANGE THE MODE TO BINARY</em>.
 ```
   open pub400.com
   username
